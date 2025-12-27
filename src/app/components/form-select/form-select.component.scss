@@ -1,0 +1,30 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  margin-top: 20px;
+}
+
+.form-select {
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+
+  &:focus {
+    border-color: #a903fc;
+  }
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 4px;
+}

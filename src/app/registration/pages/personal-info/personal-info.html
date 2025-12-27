@@ -1,0 +1,84 @@
+
+<h4>Step 1: Personal Information</h4>
+<app-form-input
+  label="First Name"
+  [value]="field('firstName') | async"
+  [error]="error('firstName') | async"
+  [touched]="(touched('firstName') | async) ?? false"
+  (valueChange)="update('firstName', $event)"
+  (blur)="blur('firstName')"
+/>
+
+<app-form-input
+  label="Last Name"
+  [value]="field('lastName') | async"
+  [error]="error('lastName') | async"
+  [touched]="(touched('lastName') | async) ?? false"
+  (valueChange)="update('lastName', $event)"
+  (blur)="blur('lastName')"
+/>
+
+<app-form-input
+  label="Email"
+  type="email"
+  [value]="field('email') | async"
+  [error]="error('email') | async"
+  [touched]="(touched('email') | async) ?? false"
+  (valueChange)="update('email', $event)"
+  (blur)="blur('email')"
+/>
+
+<app-form-input
+  label="Phone Number"
+  type="tel"
+  [value]="field('phone') | async"
+  [error]="error('phone') | async"
+  [touched]="(touched('phone') | async) ?? false"
+  (valueChange)="update('phone', $event)"
+  (blur)="blur('phone')"
+/>
+
+<app-form-date
+  label="Date of Birth"
+  [minDate]="minBirthDate"
+  [maxDate]="maxBirthDate"
+  [value]="field('dob') | async"
+  [error]="error('dob') | async"
+  [touched]="(touched('dob') | async) ?? false"
+  (valueChange)="update('dob', $event)"
+  (blur)="blur('dob')"
+/>
+
+<app-form-select
+  label="Gender"
+  placeholder="Select gender"
+  [options]="genderOptions"
+  [value]="field('gender') | async"
+  [error]="error('gender') | async"
+  [touched]="(touched('gender') | async) ?? false"
+  (valueChange)="update('gender', $event)"
+  (blur)="blur('gender')"
+/>
+
+<app-form-file
+  label="Profile Avatar"
+  [value]="field('avatar') | async"
+  [error]="error('avatar') | async"
+  [touched]="(touched('avatar') | async) ?? false"
+  (fileSelected)="onAvatarSelected($event)"
+  (blur)="blur('avatar')"
+></app-form-file>
+
+<app-form-textarea
+  label="Bio"
+  [value]="field('bio') | async"
+  [error]="error('bio') | async"
+  [touched]="(touched('bio') | async) ?? false"
+  (valueChange)="update('bio', $event)"
+  (blur)="blur('bio')"
+/>
+
+<div class="form-navigation" *ngIf="started$ | async">
+  <button class="prev" (click)="goPrevious()" [disabled]="true">Previous</button>
+  <button class="next" (click)="goNext()" [disabled]="!(isComplete$ | async)">Next</button>
+</div>

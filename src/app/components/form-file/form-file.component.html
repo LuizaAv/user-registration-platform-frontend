@@ -1,0 +1,21 @@
+<section class="form-container">
+  <label class="form-label">{{ label }}</label>
+
+  <div class="dropzone" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+    <input type="file" accept="image/*" hidden #fileInput (change)="onFileInput($any($event.target).files)" />
+
+    <div class="drop-inner" (click)="fileInput.click()">
+      <ng-container *ngIf="value; else empty">
+        <img [src]="value" class="preview" alt="avatar preview" />
+        <div class="change">Change photo</div>
+      </ng-container>
+
+      <ng-template #empty>
+        <div class="placeholder">Drag & drop image here or click to choose</div>
+        <div class="hint">JPG, PNG, GIF, WEBP — max 5MB</div>
+      </ng-template>
+    </div>
+  </div>
+
+  <p class="error" *ngIf="error && touched">{{ error }}</p>
+</section>

@@ -1,0 +1,22 @@
+<section class="form-container">
+  <label class="form-label">{{ label }}</label>
+
+  <select
+    class="form-select"
+    [value]="value ?? ''"
+    (change)="onChange($event)"
+    (blur)="blur.emit()"
+  >
+    <option value="" disabled>
+      {{ placeholder }}
+    </option>
+
+    <option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
+
+  <p class="error" *ngIf="error && touched">
+    {{ error }}
+  </p>
+</section>

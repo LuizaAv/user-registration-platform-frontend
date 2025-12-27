@@ -1,0 +1,19 @@
+<section class="form-container">
+  <label class="form-label">{{ label }}</label>
+
+  <textarea
+    class="form-textarea"
+    [class.warning]="isWarning"
+    [value]="value ?? ''"
+    [attr.maxlength]="maxLength"
+    rows="4"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  ></textarea>
+
+  <div class="counter">
+    {{ characterCount }}/{{ maxLength }}
+  </div>
+
+  <p class="error" *ngIf="error && touched">{{ error }}</p>
+</section>

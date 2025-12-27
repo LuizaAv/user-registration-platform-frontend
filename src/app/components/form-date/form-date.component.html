@@ -1,0 +1,15 @@
+<section class="form-container">
+  <label class="form-date-label">{{ label }}</label>
+
+  <input
+    type="date"
+    class="form-input"
+    [min]="minDate"
+    [max]="maxDate"
+    [value]="value ?? ''"
+    (change)="valueChange.emit($any($event.target).value)"
+    (blur)="blur.emit()"
+  />
+
+  <p class="error" *ngIf="error && touched">{{ error }}</p>
+</section>

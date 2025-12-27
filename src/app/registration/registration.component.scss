@@ -1,0 +1,26 @@
+.registration-main-container {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #a903fc;
+}
+
+.start-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  background-color: #a903fc;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 500;
+  :hover {
+    cursor: pointer;
+  }
+}

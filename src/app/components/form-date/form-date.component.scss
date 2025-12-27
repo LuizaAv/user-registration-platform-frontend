@@ -1,0 +1,25 @@
+.form-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-date-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a903fc;
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #ECECEC;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  &:focus {
+    outline: none;
+    border-color: #a903fc;
+  }
+}
