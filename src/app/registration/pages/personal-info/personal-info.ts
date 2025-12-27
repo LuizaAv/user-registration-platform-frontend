@@ -4,7 +4,6 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { combineLatest, map } from 'rxjs';
 import { RegistrationService } from '../../registration.service';
-import { Observable } from 'rxjs';
 import { FormInputComponent } from '../../../components/form-input/form-input.component';
 import { FormFileComponent } from '../../../components/form-file/form-file.component';
 import * as Actions from '../../store/personal-info/personal-info.actions';

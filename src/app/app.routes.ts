@@ -14,7 +14,6 @@ export const routes: Routes = [
       { path: 'professional', component: Professional },
       { path: 'preferences', component: Preferences },
       { path: 'verification', component: Verification },
-      // { path: '', redirectTo: 'personal-info', pathMatch: 'full' },
     ],
   },
   { path: '', redirectTo: 'registration', pathMatch: 'full' },

@@ -11,11 +11,17 @@ import { RegistrationService } from './registration.service';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent {
-  constructor(private router: Router, private registrationService: RegistrationService) {}
+  constructor(
+    private router: Router,
+    private registrationService: RegistrationService,
+  ) {}
 
   get showStartButton(): boolean {
     const url = this.router.url || '';
-    return !this.registrationService.isStarted() && (url === '/registration' || url === '' || url === '/');
+    return (
+      !this.registrationService.isStarted() &&
+      (url === '/registration' || url === '' || url === '/')
+    );
   }
 
   startRegistration() {

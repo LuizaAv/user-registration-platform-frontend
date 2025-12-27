@@ -17,20 +17,17 @@ function validate(field: string, value: string | null, fileInfo?: { size: number
     }
 
     if (field === 'avatar') {
-      // If fileInfo is provided, validate by size and mime type
       if (fileInfo) {
         if (fileInfo.size > 5 * 1024 * 1024) return 'File must be less than 5MB';
         const allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
         if (!allowed.includes(fileInfo.type)) return 'Invalid file format';
       } else if (value) {
-        // value may be a data URL or a URL string - validate mime/type from data URL or extension
         const dataUrlMatch = /^data:(image\/[^;]+);base64,/.exec(value);
         if (dataUrlMatch) {
           const mime = dataUrlMatch[1];
           const allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
           if (!allowed.includes(mime)) return 'Invalid file format';
         } else {
-          // fallback to extension check for URL strings
           const lower = value.toLowerCase();
           const allowedExt = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
           const hasExt = allowedExt.some(e => lower.endsWith(e));
