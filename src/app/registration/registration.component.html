@@ -1,7 +1,8 @@
 <section class="registration-main-container">
-  <h3>New User Registration</h3>
+  <h3 style="text-align: center">New User Registration</h3>
   <button class="start-button" *ngIf="showStartButton" (click)="startRegistration()">
     Start The Process
   </button>
+  <app-stepper *ngIf="!showStartButton"></app-stepper>
   <router-outlet></router-outlet>
 </section>

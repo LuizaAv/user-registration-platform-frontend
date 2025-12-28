@@ -1,4 +1,4 @@
-<div class="form-group">
+<section class="form-group">
   <label *ngIf="label" [for]="inputId" class="form-label">{{ label }}</label>
   <div class="autocomplete-container">
     <input
@@ -25,4 +25,4 @@
   </div>
   <div *ngIf="error && touched" class="error-message">{{ error }}</div>
   <div *ngIf="loading" class="loading-spinner">Loading...</div>
-</div>
+</section>

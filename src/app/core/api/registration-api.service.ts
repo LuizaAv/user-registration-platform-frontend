@@ -1,17 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-interface EmailValidationResponse {
-  available: boolean;
-  message: string;
-}
-
-interface ReferenceItem {
-  id: string;
-  name: string;
-  category?: string;
-}
+import { EmailValidationResponse, ReferenceItem } from '../models/personal-info.model';
 
 @Injectable({ providedIn: 'root' })
 export class RegistrationApiService {
@@ -24,27 +14,42 @@ export class RegistrationApiService {
   }
 
   getJobTitles(): Observable<{ message: string; data: ReferenceItem[] }> {
-    return this.http.get<{ message: string; data: ReferenceItem[] }>(`${this.base}/reference/job-titles`);
+    return this.http.get<{ message: string; data: ReferenceItem[] }>(
+      `${this.base}/reference/job-titles`,
+    );
   }
 
   getIndustries(): Observable<{ message: string; data: ReferenceItem[] }> {
-    return this.http.get<{ message: string; data: ReferenceItem[] }>(`${this.base}/reference/industries`);
+    return this.http.get<{ message: string; data: ReferenceItem[] }>(
+      `${this.base}/reference/industries`,
+    );
   }
 
   getSkills(): Observable<{ message: string; data: ReferenceItem[] }> {
-    return this.http.get<{ message: string; data: ReferenceItem[] }>(`${this.base}/reference/skills`);
+    return this.http.get<{ message: string; data: ReferenceItem[] }>(
+      `${this.base}/reference/skills`,
+    );
   }
 
   getCareerGoals(): Observable<{ message: string; data: ReferenceItem[] }> {
-    return this.http.get<{ message: string; data: ReferenceItem[] }>(`${this.base}/reference/career-goals`);
+    return this.http.get<{ message: string; data: ReferenceItem[] }>(
+      `${this.base}/reference/career-goals`,
+    );
   }
 
   getTimeZones(): Observable<{ message: string; data: ReferenceItem[] }> {
-    return this.http.get<{ message: string; data: ReferenceItem[] }>(`${this.base}/reference/timezones`);
+    return this.http.get<{ message: string; data: ReferenceItem[] }>(
+      `${this.base}/reference/timezones`,
+    );
   }
 
-  submitRegistration(registrationData: any): Observable<{ newRegistration: any; statusCode: number; message: string }> {
-    return this.http.post<{ newRegistration: any; statusCode: number; message: string }>(`${this.base}/registrations`, registrationData);
+  submitRegistration(
+    registrationData: any,
+  ): Observable<{ newRegistration: any; statusCode: number; message: string }> {
+    return this.http.post<{ newRegistration: any; statusCode: number; message: string }>(
+      `${this.base}/registrations`,
+      registrationData,
+    );
   }
 
   getRegistration(id: string): Observable<any> {

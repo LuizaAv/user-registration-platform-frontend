@@ -1,17 +1,12 @@
 <section class="form-container">
   <label class="form-label">{{ label }}</label>
-
-  <!-- <div class="input-wrapper"> -->
-    <input
-      class="form-input"
-      [type]="type"
-      [value]="value ?? ''"
-      (input)="valueChange.emit($any($event.target).value)"
-      (blur)="blur.emit()"
-    />
-
-    <span class="spinner" *ngIf="loading">⏳</span>
-  <!-- </div> -->
-
+  <input
+    class="form-input"
+    [type]="type"
+    [value]="value ?? ''"
+    (input)="valueChange.emit($any($event.target).value)"
+    (blur)="blur.emit()"
+  />
+  <span class="spinner" *ngIf="loading">...loading</span>
   <p class="error" *ngIf="error && touched">{{ error }}</p>
 </section>

@@ -10,13 +10,13 @@
 }
 
 .checkmark {
-  font-size: 4rem;
-  color: #28A745;
+  font-size: 2rem;
+  color: #28a745;
   margin-bottom: 1rem;
 }
 
 .success-header h1 {
-  color: #28A745;
+  color: #28a745;
   margin-bottom: 0.5rem;
 }
 
@@ -25,20 +25,21 @@
   color: #495057;
 }
 
-.loading, .error {
+.loading,
+.error {
   padding: 2rem;
   border-radius: 8px;
   margin: 2rem 0;
 }
 
 .loading {
-  background-color: #F8F9FA;
+  background-color: #f8f9fa;
   color: #495057;
 }
 
 .error {
-  background-color: #F8D7DA;
-  color: #721C24;
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
 .registration-summary {
@@ -46,19 +47,23 @@
   margin: 2rem 0;
 }
 
+.registration-summary h2 {
+  text-align: center;
+}
+
 .summary-section {
   margin-bottom: 2rem;
   padding: 1.5rem;
-  border: 1px solid #DEE2E6;
+  border: 1px solid #dee2e6;
   border-radius: 8px;
-  background-color: #F8F9FA;
+  background-color: #f8f9fa;
 }
 
 .summary-section h3 {
   margin-top: 0;
   margin-bottom: 1rem;
   color: #495057;
-  border-bottom: 1px solid #DEE2E6;
+  border-bottom: 1px solid #dee2e6;
   padding-bottom: 0.5rem;
 }
 
@@ -78,8 +83,8 @@
 }
 
 .new-registration-btn {
-  background-color: #007BFF;
-  color: #FFFFFF;
+  background-color: #007bff;
+  color: #ffffff;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
@@ -89,5 +94,5 @@
 }
 
 .new-registration-btn:hover {
-  background-color: #0056B3;
+  background-color: #0056b3;
 }

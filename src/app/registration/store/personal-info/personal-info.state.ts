@@ -30,9 +30,7 @@ export const initialPersonalInfoState: PersonalInfoState = (() => {
   if (stored) {
     try {
       return JSON.parse(stored);
-    } catch (e) {
-      // If parsing fails, use default
-    }
+    } catch (e) {}
   }
   return {
     firstName: '',

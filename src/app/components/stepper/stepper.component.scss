@@ -1,0 +1,140 @@
+.stepper {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.stepper-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+
+  &:hover.accessible {
+    transform: translateY(-2px);
+  }
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+  position: relative;
+  background: white;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.step-title {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+  color: rgb(102, 102, 102);
+  transition: color 0.3s ease;
+}
+
+.step.completed .step-circle {
+  background: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.step.completed .step-title {
+  color: #28a745;
+}
+
+.step.current .step-circle {
+  background: #A903FC;
+  border-color: #A903FC;
+  color: white;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.step.current .step-title {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.step.accessible .step-circle {
+  border-color: #A903FC;
+  color: #A903FC;
+}
+
+.step.accessible:hover .step-circle {
+  background: #A903FC;
+  color: white;
+}
+
+.checkmark{
+    color: #FFFFFF;
+}
+
+.step.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.step.disabled .step-circle {
+  border-color: #cccccc;
+  color: #cccccc;
+}
+
+.step.disabled .step-title {
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .stepper-container {
+    padding: 0 1rem;
+  }
+
+  .step-title {
+    font-size: 10px;
+  }
+
+  .step-circle {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+  }
+}
+
+.stepper-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.continue-btn {
+  padding: 0.75rem 2rem;
+  background: #A903FC;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background: #A903FC;
+  }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+}

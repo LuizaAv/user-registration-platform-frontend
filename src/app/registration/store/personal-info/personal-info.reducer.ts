@@ -1,15 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
 import * as Actions from './personal-info.actions';
 import { initialPersonalInfoState } from './personal-info.state';
+import { isValidEmail, isValidName } from '../../../core/helper-functions/validation';
 
-const nameRegex = /^[\p{L} '-]{2,50}$/u;
-
-function validate(field: string, value: string | null, fileInfo?: { size: number; type: string } | null): string | null {
+function validate(
+  field: string,
+  value: string | null,
+  fileInfo?: { size: number; type: string } | null,
+): string | null {
   if (typeof value === 'string') {
-    if ((field === 'firstName' || field === 'lastName') && !nameRegex.test(value)) {
+    if ((field === 'firstName' || field === 'lastName') && !isValidName(value)) {
       return `${field === 'firstName' ? 'First name' : 'Last name'} must be 2-50 characters, letters only`;
     }
-    if (field === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+    if (field === 'email' && !isValidEmail(value)) {
       return 'Invalid email format';
     }
     if (field === 'bio' && value.length > 500) {
@@ -30,7 +33,7 @@ function validate(field: string, value: string | null, fileInfo?: { size: number
         } else {
           const lower = value.toLowerCase();
           const allowedExt = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-          const hasExt = allowedExt.some(e => lower.endsWith(e));
+          const hasExt = allowedExt.some((e) => lower.endsWith(e));
           if (!hasExt) return 'Invalid file format';
         }
       }
@@ -63,15 +66,13 @@ export const personalInfoReducer = createReducer(
       ...state.touched,
       [field]: true,
     },
-  }))
+  })),
 
-  ,on(Actions.setFieldError, (state, { field, error }) => ({
+  on(Actions.setFieldError, (state, { field, error }) => ({
     ...state,
     errors: {
       ...state.errors,
       [field]: error,
     },
-  }))
+  })),
 );
-
-

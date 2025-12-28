@@ -11,7 +11,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class FormInputComponent {
   @Input() label!: string;
   @Input() type: 'text' | 'email' | 'tel' = 'text';
-
   @Input() value: string | null = null;
   @Input() error: string | null = null;
   @Input() touched = false;

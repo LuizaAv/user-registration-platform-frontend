@@ -1,24 +1,31 @@
 .registration-main-container {
-  width: 100%;
+  width: 50%;
   height: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  color: #A903FC;
+  color: #a903fc;
+  align-items: stretch;
+  min-height: auto;
+  height: auto;
+  overflow: visible;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .start-button {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   width: 200px;
   height: 50px;
-  background-color: #A903FC;
+  background-color: #a903fc;
   outline: none;
   border: none;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 500;
   :hover {
     cursor: pointer;
@@ -30,4 +37,10 @@
   width: 100%;
   max-width: 720px;
   padding: 0 16px;
+}
+
+@media (max-width: 480px) {
+  .registration-main-container {
+    width: 100%;
+  }
 }

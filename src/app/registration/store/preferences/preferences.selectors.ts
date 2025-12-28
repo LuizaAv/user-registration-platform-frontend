@@ -21,7 +21,9 @@ export const selectTouched = (field: string) => createSelector(
 export const selectPreferencesComplete = createSelector(
   selectPreferencesState,
   (state) => {
-    // Preferences might be optional, so always return true for now
-    return true;
+    const hasCareerGoals = state.careerGoals && state.careerGoals.length >= 1 && state.careerGoals.length <= 5;
+    const hasCompanySize = state.companySize && state.companySize.length >= 1;
+    const hasNoErrors = Object.values(state.errors).every(error => !error);
+    return hasCareerGoals && hasCompanySize && hasNoErrors;
   }
 );

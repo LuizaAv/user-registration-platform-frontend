@@ -82,7 +82,7 @@
   label="Skills (Optional)"
   placeholder="Search and select skills..."
   [options]="skills"
-  [selectedItems]="selectedSkills"
+  [selectedItems]="(selectedSkills$ | async) || []"
   [loading]="skillsLoading"
   [maxSelections]="10"
   (selectionChange)="onSkillsChange($event)"
@@ -99,7 +99,7 @@
   (blur)="blur('linkedinUrl')"
 />
 
-<div class="form-navigation" *ngIf="showNavigation">
-  <button class="prev" (click)="goPrevious()">Previous</button>
-  <button class="next" (click)="goNext()" [disabled]="!(isComplete$ | async)">Next</button>
+<div class="form-navigation">
+  <button type="button" class="prev" (click)="goPrevious()">Previous</button>
+  <button type="button" class="next" (click)="goNext()">Next</button>
 </div>

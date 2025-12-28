@@ -23,7 +23,7 @@ export class FormFileComponent {
   @Output() blur = new EventEmitter<void>();
 
   readonly allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-  readonly maxSize = 5 * 1024 * 1024; // 5MB
+  readonly maxSize = 5 * 1024 * 1024;
 
   onFileInput(files: FileList | null) {
     if (!files || files.length === 0) return;
@@ -40,20 +40,37 @@ export class FormFileComponent {
     if (file) this.handleFile(file);
   }
 
+  removePhoto(evt: Event) {
+    evt.stopPropagation();
+    this.fileSelected.emit({ dataUrl: null, fileInfo: null, error: null });
+  }
+
   private handleFile(file: File) {
     if (file.size > this.maxSize) {
-      this.fileSelected.emit({ dataUrl: null, fileInfo: { size: file.size, type: file.type }, error: 'File must be less than 5MB' });
+      this.fileSelected.emit({
+        dataUrl: null,
+        fileInfo: { size: file.size, type: file.type },
+        error: 'File must be less than 5MB',
+      });
       return;
     }
 
     if (!this.allowedTypes.includes(file.type)) {
-      this.fileSelected.emit({ dataUrl: null, fileInfo: { size: file.size, type: file.type }, error: 'Invalid file format' });
+      this.fileSelected.emit({
+        dataUrl: null,
+        fileInfo: { size: file.size, type: file.type },
+        error: 'Invalid file format',
+      });
       return;
     }
 
     const reader = new FileReader();
     reader.onload = () => {
-      this.fileSelected.emit({ dataUrl: reader.result as string, fileInfo: { size: file.size, type: file.type }, error: null });
+      this.fileSelected.emit({
+        dataUrl: reader.result as string,
+        fileInfo: { size: file.size, type: file.type },
+        error: null,
+      });
     };
     reader.readAsDataURL(file);
   }

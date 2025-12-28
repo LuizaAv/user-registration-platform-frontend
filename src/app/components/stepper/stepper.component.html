@@ -1,0 +1,19 @@
+<div class="stepper">
+  <div class="stepper-container">
+    <div
+      *ngFor="let step of steps; let i = index"
+      class="step"
+      [class.completed]="step.completed"
+      [class.current]="step.current"
+      [class.accessible]="step.accessible"
+      [class.disabled]="!step.accessible"
+      (click)="onStepClick(step)"
+    >
+      <div class="step-circle">
+        <span *ngIf="step.completed" class="checkmark">✓</span>
+        <span *ngIf="!step.completed">{{ i + 1 }}</span>
+      </div>
+      <div class="step-title">{{ step.title }}</div>
+    </div>
+  </div>
+</div>

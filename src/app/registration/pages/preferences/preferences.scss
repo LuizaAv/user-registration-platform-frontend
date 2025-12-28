@@ -26,6 +26,56 @@
   margin: 0;
 }
 
+.languages-container {
+  .language-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #f9f9f9;
+
+    app-form-select {
+      flex: 1;
+    }
+
+    .remove-language {
+      padding: 0.5rem 1rem;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-bottom: 1.5rem;
+
+      &:hover {
+        background: #c82333;
+      }
+    }
+  }
+
+  .add-language {
+    padding: 0.5rem 1rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: #218838;
+    }
+
+    &:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+    }
+  }
+}
+
 .form-navigation {
   display: flex;
   justify-content: space-between;

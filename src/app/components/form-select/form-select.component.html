@@ -4,8 +4,8 @@
   <select
     *ngIf="!loading"
     class="form-select"
-    [value]="value ?? ''"
-    (change)="onChange($event)"
+    [(ngModel)]="value"
+    (ngModelChange)="valueChange.emit($event)"
     (blur)="blur.emit()"
   >
     <option value="" disabled>

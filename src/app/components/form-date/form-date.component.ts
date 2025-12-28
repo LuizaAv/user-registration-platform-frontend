@@ -10,11 +10,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FormDateComponent {
   @Input() label!: string;
-
   @Input() value: string | null = null;
   @Input() error: string | null = null;
   @Input() touched = false;
-
   @Input() minDate!: string;
   @Input() maxDate!: string;
 

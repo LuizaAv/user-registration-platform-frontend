@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { combineLatest, Subject, of } from 'rxjs';
-import { map, debounceTime, distinctUntilChanged, filter, switchMap, tap, catchError } from 'rxjs/operators';
+import { map, debounceTime, distinctUntilChanged, filter, switchMap, tap, catchError, take } from 'rxjs/operators';
 import { RegistrationApiService } from '../../../core/api/registration-api.service';
 import { RegistrationService } from '../../registration.service';
 import { FormInputComponent } from '../../../components/form-input/form-input.component';
@@ -16,6 +16,7 @@ import {
   SelectOption,
 } from '../../../components/form-select/form-select.component';
 import { FormTextareaComponent } from '../../../components/form-textarea/form-textarea.component';
+import { isValidEmail, isValidPhoneNumber } from '../../../core/helper-functions/validation';
 
 @Component({
   selector: 'app-personal-info',
@@ -62,10 +63,6 @@ export class PersonalInfo {
   private emailInput$ = new Subject<string>();
   emailLoading = false;
 
-  private isValidEmail(email: string): boolean {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-
   private validateName(name: string, field: string): string | null {
     if (!name || name.trim().length === 0) {
       return `${field} is required`;
@@ -83,8 +80,8 @@ export class PersonalInfo {
     if (!phone || phone.trim().length === 0) {
       return 'Phone number is required';
     }
-    const phoneRegex = /^\+\d{1,4}[\s\-\(\)]*\d[\s\-\(\)\d]*$/;
-    if (!phoneRegex.test(phone) || phone.replace(/[\s\-\(\)]/g, '').length < 7) {
+
+    if (!isValidPhoneNumber(phone) || phone.replace(/[\s\-\(\)]/g, '').length < 7) {
       return 'Please enter a valid international phone number';
     }
     return null;
@@ -193,7 +190,7 @@ export class PersonalInfo {
           error = this.validateName(value, 'Last name');
           break;
         case 'email':
-          if (!this.isValidEmail(value.trim())) {
+          if (!isValidEmail(value.trim())) {
             error = 'Invalid email format';
           } else {
             this.store.dispatch(Actions.setFieldError({ field: 'email', error: null }));
@@ -227,6 +224,10 @@ export class PersonalInfo {
   }
 
   onAvatarSelected(event: { dataUrl: string | null; fileInfo?: { size: number; type: string } | null; error?: string | null }) {
+    if (event.error) {
+      this.store.dispatch(Actions.setFieldError({ field: 'avatar', error: event.error }));
+      return;
+    }
     this.update('avatar', event.dataUrl, event.fileInfo ?? null);
   }
 
@@ -235,7 +236,16 @@ export class PersonalInfo {
   }
 
   goNext() {
-    this.router.navigate(['/registration/professional']);
+    // Check if personal info is complete before navigating
+    this.store.select(Selectors.selectPersonalInfoComplete).pipe(take(1)).subscribe(isComplete => {
+      if (isComplete) {
+        this.router.navigate(['/registration/professional']);
+      } else {
+        // Mark all fields as touched to show validation errors
+        const fields = ['firstName', 'lastName', 'email', 'phone', 'dob', 'gender'];
+        fields.forEach(field => this.blur(field));
+      }
+    });
   }
 
   blur(field: string) {

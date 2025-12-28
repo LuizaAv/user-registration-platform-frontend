@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RegistrationApiService } from '../../../core/api/registration-api.service';
 
@@ -17,22 +17,35 @@ export class Complete implements OnInit {
   error: string | null = null;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
-    private api: RegistrationApiService
+    private api: RegistrationApiService,
   ) {}
 
   ngOnInit() {
     this.registrationId = this.route.snapshot.paramMap.get('id');
-    const state = history.state as { registrationData?: any };
-    if (state.registrationData) {
-      this.registrationData = state.registrationData;
-      this.loading = false;
-    } else if (this.registrationId) {
+    if (typeof window !== 'undefined') {
+      const state = history.state as { registrationData?: any };
+      if (state.registrationData) {
+        this.registrationData = state.registrationData;
+        this.loading = false;
+        this.clearStorage();
+        return;
+      }
+    }
+    if (this.registrationId) {
       this.loadRegistrationData();
     } else {
       this.error = 'No registration ID provided';
       this.loading = false;
+    }
+  }
+
+  private clearStorage() {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('personalInfo');
+      localStorage.removeItem('preferences');
+      localStorage.removeItem('professionalInfo');
+      localStorage.removeItem('registrationStarted');
     }
   }
 
@@ -43,20 +56,29 @@ export class Complete implements OnInit {
       next: (response) => {
         this.registrationData = response;
         this.loading = false;
+        this.clearStorage();
       },
       error: (err) => {
         this.error = 'Failed to load registration data';
         this.loading = false;
-      }
+      },
     });
   }
 
   startNewRegistration() {
-    this.router.navigate(['/registration/personal-info']);
+    localStorage.clear();
+    window.location.href = '/registration';
   }
 
   getFormattedLanguages(): string {
-    if (!this.registrationData?.languages) return '';
-    return this.registrationData.languages.map((l: any) => `${l.language} (${l.level})`).join(', ');
+    if (!this.registrationData?.languages || !Array.isArray(this.registrationData.languages))
+      return '';
+    console.log(this.registrationData.languages);
+    const changedLanguageArray = this.registrationData.languages.flat();
+    console.log('flattened', changedLanguageArray);
+    return changedLanguageArray
+      .map((l: any) => (l && l.language && l.level ? `${l.language} (${l.level})` : ''))
+      .filter(Boolean)
+      .join(', ');
   }
 }

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ProfessionalInfoState, initialProfessionalInfoState } from './professional-info.state';
+import { initialProfessionalInfoState } from './professional-info.state';
 import * as Actions from './professional-info.actions';
 
 export const professionalInfoReducer = createReducer(

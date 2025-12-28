@@ -12,12 +12,11 @@
 
 <div class="form-group">
   <label>Preferred Company Size</label>
-  <div class="checkbox-group">
+  <div class="checkbox-group" *ngIf="selectedCompanySizes$ | async as selected">
     <label *ngFor="let option of companySizeOptions" class="checkbox-item">
       <input
         type="checkbox"
-        [value]="option.id"
-        [checked]="isCompanySizeSelected(option.id)"
+        [checked]="selected.includes(option.id)"
         (change)="onCompanySizeChange(option.id, $event.target.checked)"
       />
       {{ option.name }}
@@ -42,14 +41,60 @@
   placeholder="Select your timezone"
   [options]="timezones"
   [loading]="timezoneLoading"
-  [value]="field('timezone') | async"
+  [value]="getTimezoneValue() | async"
   [error]="error('timezone') | async"
   [touched]="(touched('timezone') | async) ?? false"
-  (valueChange)="update('timezone', $event)"
+  (valueChange)="onTimezoneChange($event)"
   (blur)="blur('timezone')"
 />
 
-<div class="form-navigation" *ngIf="showNavigation">
-  <button class="prev" (click)="goPrevious()">Previous</button>
-  <button class="next" (click)="goNext()">Next</button>
+<div class="form-group">
+  <label>Languages</label>
+  <div class="languages-container">
+    <div *ngFor="let language of languages; let i = index" class="language-item">
+      <app-form-select
+        label="Language Name"
+        placeholder="Select language"
+        [options]="languageOptions"
+        [value]="language.name"
+        (valueChange)="updateLanguage(i, 'name', $event)"
+      />
+      <app-form-select
+        label="Proficiency"
+        placeholder="Select proficiency"
+        [options]="proficiencyLevels"
+        [value]="language.proficiency"
+        (valueChange)="updateLanguage(i, 'proficiency', $event)"
+      />
+      <button type="button" class="remove-language" (click)="removeLanguage(i)">Remove</button>
+    </div>
+    <button
+      type="button"
+      class="add-language"
+      (click)="addLanguage()"
+      [disabled]="languages.length >= 5"
+    >
+      Add Language
+    </button>
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Newsletter Subscriptions</label>
+  <div class="checkbox-group">
+    <label *ngFor="let option of newsletterOptions" class="checkbox-item">
+      <input
+        type="checkbox"
+        [value]="option.id"
+        [checked]="isNewsletterSelected(option.id)"
+        (change)="onNewsletterChange(option.id, $event.target.checked)"
+      />
+      {{ option.name }}
+    </label>
+  </div>
+</div>
+
+<div class="form-navigation">
+  <button type="button" class="prev" (click)="goPrevious()">Previous</button>
+  <button type="button" class="next" (click)="goNext()">Next</button>
 </div>

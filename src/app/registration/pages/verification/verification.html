@@ -5,22 +5,14 @@
 <div class="legal-agreements">
   <div class="agreement-item">
     <label class="checkbox-label">
-      <input
-        type="checkbox"
-        [(ngModel)]="termsAccepted"
-        (change)="error = null"
-      />
+      <input type="checkbox" [(ngModel)]="termsAccepted" (change)="error = null" />
       <span>I accept the <a href="#" target="_blank">Terms & Conditions</a></span>
     </label>
   </div>
 
   <div class="agreement-item">
     <label class="checkbox-label">
-      <input
-        type="checkbox"
-        [(ngModel)]="privacyAccepted"
-        (change)="error = null"
-      />
+      <input type="checkbox" [(ngModel)]="privacyAccepted" (change)="error = null" />
       <span>I accept the <a href="#" target="_blank">Privacy Policy</a></span>
     </label>
   </div>
@@ -30,14 +22,9 @@
   {{ error }}
 </div>
 
-<div class="form-navigation" *ngIf="showNavigation">
-  <button class="prev" (click)="goPrevious()">Previous</button>
-  <button
-    class="next"
-    (click)="submitRegistration()"
-    [disabled]="submitting"
-  >
-    <span *ngIf="submitting">Submitting...</span>
-    <span *ngIf="!submitting">Complete Registration</span>
+<div class="form-navigation">
+  <button type="button" class="prev" (click)="goPrevious()">Previous</button>
+  <button type="button" class="next" (click)="submitRegistration()" [disabled]="submitting">
+    {{ submitting ? 'Submitting...' : 'Complete Registration' }}
   </button>
 </div>

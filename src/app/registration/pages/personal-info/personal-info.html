@@ -1,4 +1,3 @@
-
 <h4>Step 1: Personal Information</h4>
 <app-form-input
   label="First Name *"
@@ -38,6 +37,7 @@
   (valueChange)="update('phone', $event)"
   (blur)="blur('phone')"
 />
+<p class="phone-hint">Format +37498000000</p>
 
 <app-form-date
   label="Date of Birth *"
@@ -79,7 +79,6 @@
   (blur)="blur('bio')"
 />
 
-<div class="form-navigation" *ngIf="showNavigation">
-  <button class="prev" (click)="goPrevious()" [disabled]="true">Previous</button>
-  <button class="next" (click)="goNext()" [disabled]="!(isComplete$ | async)">Next</button>
+<div class="form-navigation">
+  <button type="button" class="next" (click)="goNext()">Next</button>
 </div>

@@ -8,14 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [RouterOutlet, NavbarComponent, HttpClientModule],
   standalone: true,
   templateUrl: './app.html',
-  styleUrls:['./app.scss']
+  styleUrls: ['./app.scss'],
 })
+
 export class App implements OnInit {
   protected readonly title = signal('user-registration-platform');
 
   ngOnInit() {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.removeItem('personalInfo');
+    if (typeof window !== 'undefined') {
+      localStorage.clear();
     }
   }
 }

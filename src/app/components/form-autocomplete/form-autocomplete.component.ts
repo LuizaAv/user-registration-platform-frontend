@@ -31,7 +31,7 @@ export class FormAutocompleteComponent implements OnChanges {
   inputValue = '';
   showDropdown = false;
   filteredOptions: AutocompleteOption[] = [];
-  inputId = 'autocomplete-' + Math.random().toString(36).substr(2, 9);
+  inputId = 'autocomplete-' + Math.random().toString(36).substring(2, 9);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['value']) {
@@ -58,7 +58,6 @@ export class FormAutocompleteComponent implements OnChanges {
   }
 
   onBlur() {
-    // Delay to allow option selection
     setTimeout(() => {
       this.showDropdown = false;
       this.blur.emit();

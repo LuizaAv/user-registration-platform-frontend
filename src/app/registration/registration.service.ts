@@ -21,6 +21,7 @@ export class RegistrationService {
     this.startedSubject.next(true);
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('registrationStarted', 'true');
+      // window.location.reload();
     }
   }
 

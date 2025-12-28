@@ -35,17 +35,19 @@ export class FormMultiselectComponent {
     const value = (event.target as HTMLInputElement).value;
     this.searchTerm = value;
 
-    this.filteredOptions = this.options.filter(option =>
-      option.name.toLowerCase().includes(value.toLowerCase()) &&
-      !this.selectedItems.some(selected => selected.id === option.id)
+    this.filteredOptions = this.options.filter(
+      (option) =>
+        option.name.toLowerCase().includes(value.toLowerCase()) &&
+        !this.selectedItems.some((selected) => selected.id === option.id),
     );
     this.showDropdown = this.filteredOptions.length > 0;
   }
 
   onFocus() {
-    this.filteredOptions = this.options.filter(option =>
-      option.name.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
-      !this.selectedItems.some(selected => selected.id === option.id)
+    this.filteredOptions = this.options.filter(
+      (option) =>
+        option.name.toLowerCase().includes(this.searchTerm.toLowerCase()) &&
+        !this.selectedItems.some((selected) => selected.id === option.id),
     );
     this.showDropdown = this.filteredOptions.length > 0;
   }
@@ -67,7 +69,7 @@ export class FormMultiselectComponent {
   }
 
   removeItem(item: MultiselectOption) {
-    this.selectedItems = this.selectedItems.filter(selected => selected.id !== item.id);
+    this.selectedItems = this.selectedItems.filter((selected) => selected.id !== item.id);
     this.selectionChange.emit(this.selectedItems);
   }
 }

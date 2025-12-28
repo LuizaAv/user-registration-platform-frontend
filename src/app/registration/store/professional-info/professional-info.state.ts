@@ -33,7 +33,6 @@ export const initialProfessionalInfoState: ProfessionalInfoState = (() => {
     try {
       return JSON.parse(stored);
     } catch (e) {
-      // If parsing fails, use default
     }
   }
   return {

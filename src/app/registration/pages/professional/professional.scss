@@ -9,8 +9,8 @@
 .form-navigation .next {
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  border: 1px solid #CCCCCC;
-  background: #FFFFFF;
+  border: 1px solid #cccccc;
+  background: #ffffff;
 }
 
 .form-navigation .next[disabled] {
@@ -29,11 +29,11 @@
   display: block;
 }
 
-.currently-employed{
+.currently-employed {
   display: flex;
   margin-top: 6px;
 }
-.date-container{
+.date-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,7 +41,7 @@
 }
 
 .error-message {
-  color: #DC3545;
+  color: #dc3545;
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
@@ -72,7 +72,7 @@
     order: 0;
     flex: 1 1 100%;
   }
-  .date-container{
+  .date-container {
     flex-direction: row;
   }
 }
