@@ -2,6 +2,7 @@
   <label class="form-label">{{ label }}</label>
 
   <select
+    *ngIf="!loading"
     class="form-select"
     [value]="value ?? ''"
     (change)="onChange($event)"
@@ -15,6 +16,8 @@
       {{ option.label }}
     </option>
   </select>
+
+  <div *ngIf="loading" class="loading-spinner">Loading...</div>
 
   <p class="error" *ngIf="error && touched">
     {{ error }}

@@ -1,6 +1,55 @@
-<p>preferences works!</p>
+<h4>Step 3: Preferences & Interests</h4>
 
-<div class="form-navigation" *ngIf="started$ | async">
-	<button class="prev" (click)="goPrevious()">Previous</button>
-	<button class="next" (click)="goNext()">Next</button>
+<app-form-multiselect
+  label="Career Goals"
+  placeholder="Select your career goals..."
+  [options]="careerGoals"
+  [selectedItems]="selectedCareerGoals"
+  [loading]="careerGoalsLoading"
+  [maxSelections]="5"
+  (selectionChange)="onCareerGoalsChange($event)"
+/>
+
+<div class="form-group">
+  <label>Preferred Company Size</label>
+  <div class="checkbox-group">
+    <label *ngFor="let option of companySizeOptions" class="checkbox-item">
+      <input
+        type="checkbox"
+        [value]="option.id"
+        [checked]="isCompanySizeSelected(option.id)"
+        (change)="onCompanySizeChange(option.id, $event.target.checked)"
+      />
+      {{ option.name }}
+    </label>
+  </div>
+</div>
+
+<app-form-date
+  label="Availability Date"
+  placeholder="Select your availability date"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+  [value]="field('availabilityDate') | async"
+  [error]="error('availabilityDate') | async"
+  [touched]="(touched('availabilityDate') | async) ?? false"
+  (valueChange)="update('availabilityDate', $event)"
+  (blur)="blur('availabilityDate')"
+/>
+
+<app-form-select
+  label="Time Zone"
+  placeholder="Select your timezone"
+  [options]="timezones"
+  [loading]="timezoneLoading"
+  [value]="field('timezone') | async"
+  [error]="error('timezone') | async"
+  [touched]="(touched('timezone') | async) ?? false"
+  (valueChange)="update('timezone', $event)"
+  (blur)="blur('timezone')"
+/>
+
+<div class="form-navigation" *ngIf="showNavigation">
+  <button class="prev" (click)="goPrevious()">Previous</button>
+  <button class="next" (click)="goNext()">Next</button>
 </div>

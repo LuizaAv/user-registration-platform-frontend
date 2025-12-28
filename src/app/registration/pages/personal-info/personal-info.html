@@ -1,7 +1,7 @@
 
 <h4>Step 1: Personal Information</h4>
 <app-form-input
-  label="First Name"
+  label="First Name *"
   [value]="field('firstName') | async"
   [error]="error('firstName') | async"
   [touched]="(touched('firstName') | async) ?? false"
@@ -10,7 +10,7 @@
 />
 
 <app-form-input
-  label="Last Name"
+  label="Last Name *"
   [value]="field('lastName') | async"
   [error]="error('lastName') | async"
   [touched]="(touched('lastName') | async) ?? false"
@@ -19,17 +19,18 @@
 />
 
 <app-form-input
-  label="Email"
+  label="Email *"
   type="email"
   [value]="field('email') | async"
   [error]="error('email') | async"
   [touched]="(touched('email') | async) ?? false"
+  [loading]="emailLoading"
   (valueChange)="update('email', $event)"
   (blur)="blur('email')"
 />
 
 <app-form-input
-  label="Phone Number"
+  label="Phone Number *"
   type="tel"
   [value]="field('phone') | async"
   [error]="error('phone') | async"
@@ -39,7 +40,7 @@
 />
 
 <app-form-date
-  label="Date of Birth"
+  label="Date of Birth *"
   [minDate]="minBirthDate"
   [maxDate]="maxBirthDate"
   [value]="field('dob') | async"
@@ -50,7 +51,7 @@
 />
 
 <app-form-select
-  label="Gender"
+  label="Gender *"
   placeholder="Select gender"
   [options]="genderOptions"
   [value]="field('gender') | async"
@@ -78,7 +79,7 @@
   (blur)="blur('bio')"
 />
 
-<div class="form-navigation" *ngIf="started$ | async">
+<div class="form-navigation" *ngIf="showNavigation">
   <button class="prev" (click)="goPrevious()" [disabled]="true">Previous</button>
   <button class="next" (click)="goNext()" [disabled]="!(isComplete$ | async)">Next</button>
 </div>

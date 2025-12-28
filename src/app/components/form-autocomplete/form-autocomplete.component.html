@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label *ngIf="label" [for]="inputId" class="form-label">{{ label }}</label>
+  <div class="autocomplete-container">
+    <input
+      [id]="inputId"
+      type="text"
+      class="form-control"
+      [class.error]="error"
+      [placeholder]="placeholder"
+      [(ngModel)]="inputValue"
+      (input)="onInput($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      autocomplete="off"
+    />
+    <div class="autocomplete-dropdown" *ngIf="showDropdown && filteredOptions.length > 0">
+      <div
+        *ngFor="let option of filteredOptions"
+        class="autocomplete-option"
+        (mousedown)="selectOption(option)"
+      >
+        {{ option.name }}
+      </div>
+    </div>
+  </div>
+  <div *ngIf="error && touched" class="error-message">{{ error }}</div>
+  <div *ngIf="loading" class="loading-spinner">Loading...</div>
+</div>

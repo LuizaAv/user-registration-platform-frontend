@@ -1,6 +1,105 @@
-<p>professional works!</p>
+<h4>Step 2: Professional Background</h4>
 
-<div class="form-navigation" *ngIf="started$ | async">
-	<button class="prev" (click)="goPrevious()">Previous</button>
-	<button class="next" (click)="goNext()">Next</button>
+<app-form-autocomplete
+  label="Current Job Title *"
+  placeholder="Start typing to search job titles..."
+  [options]="jobTitles"
+  [loading]="jobTitleLoading"
+  [value]="field('jobTitle') | async"
+  [error]="error('jobTitle') | async"
+  [touched]="(touched('jobTitle') | async) ?? false"
+  (valueChange)="update('jobTitle', $event)"
+  (blur)="blur('jobTitle')"
+/>
+
+<app-form-select
+  label="Industry *"
+  placeholder="Select your industry"
+  [options]="industries"
+  [loading]="industryLoading"
+  [value]="field('industry') | async"
+  [error]="error('industry') | async"
+  [touched]="(touched('industry') | async) ?? false"
+  (valueChange)="update('industry', $event)"
+  (blur)="blur('industry')"
+/>
+
+<app-form-slider
+  label="Years of Experience"
+  [min]="0"
+  [max]="30"
+  [value]="yearsOfExperienceValue"
+  unit="years"
+  (valueChange)="update('yearsOfExperience', $event)"
+/>
+
+<div class="employment-section">
+  <label class="form-label">Employment Period</label>
+
+  <div class="date-container">
+    <app-form-date
+      label="Start Date *"
+      [value]="field('employmentStartDate') | async"
+      [touched]="(touched('employmentStartDate') | async) ?? false"
+      (valueChange)="update('employmentStartDate', $event)"
+      (blur)="blur('employmentStartDate')"
+    />
+
+    <app-form-date
+      *ngIf="!(field('currentlyEmployed') | async)"
+      label="End Date"
+      [value]="field('employmentEndDate') | async"
+      [touched]="(touched('employmentEndDate') | async) ?? false"
+      (valueChange)="update('employmentEndDate', $event)"
+      (blur)="blur('employmentEndDate')"
+    />
+  </div>
+  <div *ngIf="dateRangeError" class="error-message">{{ dateRangeError }}</div>
+</div>
+<div class="currently-employed">
+  <label>
+    <input
+      type="checkbox"
+      [checked]="field('currentlyEmployed') | async"
+      (change)="update('currentlyEmployed', $event.target.checked)"
+    />
+    I am currently employed
+  </label>
+</div>
+
+<app-form-select
+  label="Education Level *"
+  placeholder="Select your education level"
+  [options]="educationOptions"
+  [value]="field('educationLevel') | async"
+  [error]="error('educationLevel') | async"
+  [touched]="(touched('educationLevel') | async) ?? false"
+  (valueChange)="update('educationLevel', $event)"
+  (blur)="blur('educationLevel')"
+/>
+
+<app-form-multiselect
+  label="Skills (Optional)"
+  placeholder="Search and select skills..."
+  [options]="skills"
+  [selectedItems]="selectedSkills"
+  [loading]="skillsLoading"
+  [maxSelections]="10"
+  (selectionChange)="onSkillsChange($event)"
+/>
+
+<app-form-input
+  label="LinkedIn URL (Optional)"
+  type="text"
+  placeholder="https://linkedin.com/in/yourprofile"
+  [value]="field('linkedinUrl') | async"
+  [error]="error('linkedinUrl') | async"
+  [touched]="(touched('linkedinUrl') | async) ?? false"
+  (valueChange)="update('linkedinUrl', $event)"
+  (blur)="blur('linkedinUrl')"
+/>
+
+<div class="form-navigation" *ngIf="showNavigation">
+  <button class="prev" (click)="goPrevious()">Previous</button>
+  <button class="next" (click)="goNext()" [disabled]="!(isComplete$ | async)">Next</button>
 </div>

@@ -5,14 +5,28 @@
   margin-bottom: 100px;
 }
 
-.form-navigation .prev,
+.form-navigation .prev {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #CCCCCC;
+  background: #FFFFFF;
+  color: #333333;
+}
+
 .form-navigation .next {
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
+  background: #A903FC;
+  color: #FFFFFF;
+  border: none;
+}
+
+.form-navigation .prev:hover,
+.form-navigation .next:hover {
+  cursor: pointer;
 }
 
 .form-navigation .next[disabled] {
-  opacity: 0.5;
+  opacity: 0.6;
+  pointer-events: none;
 }

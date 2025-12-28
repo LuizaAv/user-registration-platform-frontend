@@ -1,0 +1,23 @@
+<div class="form-group">
+  <label *ngIf="label" class="form-label">{{ label }}</label>
+  <div class="slider-container">
+    <div class="slider-value">
+      {{ currentValue }}{{ currentValue >= max ? '+' : '' }} {{ unit }}
+    </div>
+    <input
+      type="range"
+      class="form-slider"
+      [min]="min"
+      [max]="max"
+      [step]="step"
+      [(ngModel)]="currentValue"
+      (input)="onValueChange($event)"
+      (blur)="blur.emit()"
+    />
+    <div class="slider-labels">
+      <span>{{ min }} {{ unit }}</span>
+      <span>{{ max }} {{ unit }}</span>
+    </div>
+  </div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+</div>

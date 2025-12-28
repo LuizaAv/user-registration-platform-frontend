@@ -3,8 +3,8 @@ $tablet-max: 1024px;
 
 .navbar {
   padding: 16px 20px;
-  background-color: #a903fc;
-  border-bottom: 1px solid #ddd;
+  background-color: #A903FC;
+  border-bottom: 1px solid #DDDDDD;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -21,6 +21,7 @@ $tablet-max: 1024px;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .nav-link {
   text-decoration: none;
   color: #333333;
@@ -29,7 +30,7 @@ $tablet-max: 1024px;
 }
 
 .nav-link.active {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 @media (max-width: $tablet-max) {

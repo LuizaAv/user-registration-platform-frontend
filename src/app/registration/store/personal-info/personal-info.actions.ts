@@ -5,6 +5,11 @@ export const updateField = createAction(
   props<{ field: string; value: string | null; fileInfo?: { size: number; type: string } | null }>()
 );
 
+export const setFieldError = createAction(
+  '[Personal Info] Set Field Error',
+  props<{ field: string; error: string | null }>(),
+);
+
 export const blurField = createAction(
   '[Personal Info] Blur Field',
   props<{ field: string }>()

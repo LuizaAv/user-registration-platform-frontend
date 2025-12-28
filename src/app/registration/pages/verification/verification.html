@@ -1,6 +1,43 @@
-<p>verification works!</p>
+<h4>Step 4: Final Verification</h4>
 
-<div class="form-navigation" *ngIf="started$ | async">
+<p>Please review and accept our legal agreements before completing your registration.</p>
+
+<div class="legal-agreements">
+  <div class="agreement-item">
+    <label class="checkbox-label">
+      <input
+        type="checkbox"
+        [(ngModel)]="termsAccepted"
+        (change)="error = null"
+      />
+      <span>I accept the <a href="#" target="_blank">Terms & Conditions</a></span>
+    </label>
+  </div>
+
+  <div class="agreement-item">
+    <label class="checkbox-label">
+      <input
+        type="checkbox"
+        [(ngModel)]="privacyAccepted"
+        (change)="error = null"
+      />
+      <span>I accept the <a href="#" target="_blank">Privacy Policy</a></span>
+    </label>
+  </div>
+</div>
+
+<div *ngIf="error" class="error-message">
+  {{ error }}
+</div>
+
+<div class="form-navigation" *ngIf="showNavigation">
   <button class="prev" (click)="goPrevious()">Previous</button>
-  <button class="next" (click)="goNext()">Next</button>
+  <button
+    class="next"
+    (click)="submitRegistration()"
+    [disabled]="submitting"
+  >
+    <span *ngIf="submitting">Submitting...</span>
+    <span *ngIf="!submitting">Complete Registration</span>
+  </button>
 </div>

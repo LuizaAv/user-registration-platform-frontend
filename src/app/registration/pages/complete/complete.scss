@@ -1,0 +1,93 @@
+.complete-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.success-header {
+  margin-bottom: 2rem;
+}
+
+.checkmark {
+  font-size: 4rem;
+  color: #28A745;
+  margin-bottom: 1rem;
+}
+
+.success-header h1 {
+  color: #28A745;
+  margin-bottom: 0.5rem;
+}
+
+.success-header p {
+  font-size: 1.1rem;
+  color: #495057;
+}
+
+.loading, .error {
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.loading {
+  background-color: #F8F9FA;
+  color: #495057;
+}
+
+.error {
+  background-color: #F8D7DA;
+  color: #721C24;
+}
+
+.registration-summary {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.summary-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #DEE2E6;
+  border-radius: 8px;
+  background-color: #F8F9FA;
+}
+
+.summary-section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #495057;
+  border-bottom: 1px solid #DEE2E6;
+  padding-bottom: 0.5rem;
+}
+
+.summary-item {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.summary-item strong {
+  display: inline-block;
+  min-width: 150px;
+  color: #495057;
+}
+
+.navigation {
+  margin-top: 3rem;
+}
+
+.new-registration-btn {
+  background-color: #007BFF;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.new-registration-btn:hover {
+  background-color: #0056B3;
+}

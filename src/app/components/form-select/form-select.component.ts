@@ -16,6 +16,7 @@ export interface SelectOption {
 export class FormSelectComponent {
   @Input() label!: string;
   @Input() placeholder = 'Select option';
+  @Input() loading = false;
 
   @Input() options: SelectOption[] = [];
 

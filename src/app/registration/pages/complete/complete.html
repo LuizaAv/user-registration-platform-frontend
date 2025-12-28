@@ -1,0 +1,119 @@
+<section class="complete-container">
+  <div class="success-header">
+    <div class="checkmark">✓</div>
+    <h1>Registration Complete!</h1>
+    <p *ngIf="registrationId">
+      Your Registration ID: <strong>{{ registrationId }}</strong>
+    </p>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <p>Loading registration details...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!loading && !error && registrationData" class="registration-summary">
+    <h2>Registration Summary</h2>
+
+    <section class="summary-section">
+      <h3>Personal Information</h3>
+      <div class="summary-item">
+        <strong>Name:</strong> {{ registrationData.first_name }} {{ registrationData.last_name }}
+      </div>
+      <div class="summary-item"><strong>Email:</strong> {{ registrationData.email }}</div>
+      <div class="summary-item"><strong>Phone:</strong> {{ registrationData.phone_number }}</div>
+      <div class="summary-item" *ngIf="registrationData.date_of_birth">
+        <strong>Date of Birth:</strong> {{ registrationData.date_of_birth | date: 'mediumDate' }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.gender">
+        <strong>Gender:</strong> {{ registrationData.gender }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.bio">
+        <strong>Bio:</strong> {{ registrationData.bio }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.profile_avatar">
+        <strong>Profile Avatar:</strong>
+        <a [href]="registrationData.profile_avatar" target="_blank">View Avatar</a>
+      </div>
+    </section>
+
+    <section class="summary-section">
+      <h3>Professional Information</h3>
+      <div class="summary-item" *ngIf="registrationData.current_job_title">
+        <strong>Current Job Title:</strong> {{ registrationData.current_job_title }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.industry">
+        <strong>Industry:</strong> {{ registrationData.industry }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.years_of_experience">
+        <strong>Years of Experience:</strong> {{ registrationData.years_of_experience }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.employment_period">
+        <strong>Employment Period:</strong>
+        {{ registrationData.employment_period.start | date: 'mediumDate' }} -
+        {{
+          registrationData.employment_period.end
+            ? (registrationData.employment_period.end | date: 'mediumDate')
+            : 'Present'
+        }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.education_level">
+        <strong>Education Level:</strong> {{ registrationData.education_level }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.skills?.length">
+        <strong>Skills:</strong> {{ registrationData.skills.join(', ') }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.linked_in_URL">
+        <strong>LinkedIn:</strong>
+        <a [href]="registrationData.linked_in_URL" target="_blank">{{
+          registrationData.linked_in_URL
+        }}</a>
+      </div>
+    </section>
+
+    <section class="summary-section">
+      <h3>Preferences</h3>
+      <div class="summary-item" *ngIf="registrationData.career_goals?.length">
+        <strong>Career Goals:</strong> {{ registrationData.career_goals.join(', ') }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.preferred_company_size?.length">
+        <strong>Preferred Company Size:</strong>
+        {{ registrationData.preferred_company_size.join(', ') }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.availability_date">
+        <strong>Availability Date:</strong>
+        {{ registrationData.availability_date | date: 'mediumDate' }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.time_zone">
+        <strong>Time Zone:</strong> {{ registrationData.time_zone }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.languages?.length">
+        <strong>Languages:</strong> {{ getFormattedLanguages() }}
+      </div>
+      <div class="summary-item" *ngIf="registrationData.newsletter_subscription?.length">
+        <strong>Newsletter Subscription:</strong>
+        {{ registrationData.newsletter_subscription.join(', ') }}
+      </div>
+    </section>
+
+    <section class="summary-section">
+      <h3>Agreements</h3>
+      <div class="summary-item">
+        <strong>Terms Accepted:</strong> {{ registrationData.is_terms_accepted ? 'Yes' : 'No' }}
+      </div>
+      <div class="summary-item">
+        <strong>Privacy Policy Accepted:</strong>
+        {{ registrationData.is_privacy_policy_accepted ? 'Yes' : 'No' }}
+      </div>
+    </section>
+  </div>
+
+  <div class="navigation">
+    <button class="new-registration-btn" (click)="startNewRegistration()">
+      Start New Registration
+    </button>
+  </div>
+</section>

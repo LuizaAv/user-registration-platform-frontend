@@ -1,31 +1,31 @@
-import { Component } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { RegistrationService } from './registration.service';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {
+  showStartButton = true;
+
   constructor(
     private router: Router,
-    private registrationService: RegistrationService,
+    private activatedRoute: ActivatedRoute,
+    private registrationService: RegistrationService
   ) {}
 
-  get showStartButton(): boolean {
-    const url = this.router.url || '';
-    return (
-      !this.registrationService.isStarted() &&
-      (url === '/registration' || url === '' || url === '/')
-    );
+  ngOnInit() {
+    this.showStartButton = !this.registrationService.isStarted();
   }
 
   startRegistration() {
     this.registrationService.start();
-    this.router.navigate(['/registration/personal-info']);
+    this.showStartButton = false;
+    this.router.navigate(['personal-info'], { relativeTo: this.activatedRoute });
   }
 }

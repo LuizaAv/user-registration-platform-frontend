@@ -1,0 +1,35 @@
+<div class="form-group">
+  <label *ngIf="label" class="form-label">{{ label }}</label>
+  <div class="multiselect-container">
+    <div class="selected-chips">
+      <span *ngFor="let item of selectedItems" class="chip">
+        {{ item.name }}
+        <button type="button" class="chip-remove" (click)="removeItem(item)">×</button>
+      </span>
+    </div>
+    <input
+      type="text"
+      class="form-control"
+      [placeholder]="placeholder"
+      [(ngModel)]="searchTerm"
+      (input)="onSearch($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      autocomplete="off"
+    />
+    <div class="multiselect-dropdown" *ngIf="showDropdown && filteredOptions.length > 0">
+      <div
+        *ngFor="let option of filteredOptions"
+        class="multiselect-option"
+        (mousedown)="selectOption(option)"
+      >
+        {{ option.name }}
+      </div>
+    </div>
+  </div>
+  <div class="selection-count" *ngIf="selectedItems.length > 0">
+    {{ selectedItems.length }} of {{ maxSelections }} selected
+  </div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <div *ngIf="loading" class="loading-spinner">Loading...</div>
+</div>

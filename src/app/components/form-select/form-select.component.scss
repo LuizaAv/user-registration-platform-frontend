@@ -12,19 +12,20 @@
 }
 
 .form-select {
+  width: 100%;
   padding: 10px 12px;
   font-size: 16px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #CCCCCC;
   outline: none;
 
   &:focus {
-    border-color: #a903fc;
+    border-color: #A903FC;
   }
 }
 
 .error {
-  color: #d32f2f;
+  color: #D32F2F;
   font-size: 13px;
   margin-top: 4px;
 }

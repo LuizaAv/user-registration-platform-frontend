@@ -1,0 +1,60 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.autocomplete-container {
+  position: relative;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #DDDDDD;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-control.error {
+  border-color: #DC3545;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #DDDDDD;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.autocomplete-option {
+  padding: 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.autocomplete-option:hover {
+  background-color: #F8F9FA;
+}
+
+.error-message {
+  color: #DC3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+.loading-spinner {
+  color: #6C757D;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

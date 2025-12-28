@@ -42,14 +42,20 @@ function validate(field: string, value: string | null, fileInfo?: { size: number
 export const personalInfoReducer = createReducer(
   initialPersonalInfoState,
 
-  on(Actions.updateField, (state, { field, value, fileInfo }) => ({
-    ...state,
-    [field]: value,
-    errors: {
-      ...state.errors,
-      [field]: validate(field, value, fileInfo),
-    },
-  })),
+  on(Actions.updateField, (state, { field, value, fileInfo }) => {
+    const newState = {
+      ...state,
+      [field]: value,
+      errors: {
+        ...state.errors,
+        [field]: validate(field, value, fileInfo),
+      },
+    };
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('personalInfo', JSON.stringify(newState));
+    }
+    return newState;
+  }),
 
   on(Actions.blurField, (state, { field }) => ({
     ...state,
@@ -58,4 +64,14 @@ export const personalInfoReducer = createReducer(
       [field]: true,
     },
   }))
+
+  ,on(Actions.setFieldError, (state, { field, error }) => ({
+    ...state,
+    errors: {
+      ...state.errors,
+      [field]: error,
+    },
+  }))
 );
+
+

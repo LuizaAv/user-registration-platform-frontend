@@ -2,16 +2,77 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+  margin-bottom: 100px;
 }
 
 .form-navigation .prev,
 .form-navigation .next {
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
+  border: 1px solid #CCCCCC;
+  background: #FFFFFF;
 }
 
-.form-navigation {
-  margin-bottom: 100px;
+.form-navigation .next[disabled] {
+  opacity: 0.5;
+}
+
+.employment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.employment-section .form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.currently-employed{
+  display: flex;
+  margin-top: 6px;
+}
+.date-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-message {
+  color: #DC3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .employment-section {
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .employment-section > :first-child {
+    flex: 1;
+    order: 1;
+  }
+
+  .employment-section > :nth-child(2) {
+    flex: 1;
+    order: 2;
+  }
+
+  .employment-section > :nth-child(3) {
+    flex: 1 1 100%;
+    order: 4;
+  }
+
+  .employment-section .form-label {
+    order: 0;
+    flex: 1 1 100%;
+  }
+  .date-container{
+    flex-direction: row;
+  }
 }
